@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hipérbole — Geometria Analítica · Seções Cônicas</title>
+<meta name="description" content="Material de referência sobre a hipérbole: definição, elementos, equações e galeria de exemplos interativos para a disciplina de Geometria Analítica.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- campo de fundo -->
+<div class="field" aria-hidden="true">
+  <div class="field__stars"></div>
+  <div class="field__grid"></div>
+  <div class="field__vignette"></div>
+</div>
+
+<div id="progress" role="presentation"></div>
+
+<!-- navegação lateral -->
+<nav class="nav-rail" aria-label="Seções do documento">
+  <a href="#hero"        class="is-active"><span class="nav-rail__dot"></span><span class="nav-rail__label">Início</span></a>
+  <a href="#definicao"><span class="nav-rail__dot"></span><span class="nav-rail__label">Definição</span></a>
+  <a href="#geometria"><span class="nav-rail__dot"></span><span class="nav-rail__label">Geometria</span></a>
+  <a href="#anatomia"><span class="nav-rail__dot"></span><span class="nav-rail__label">Anatomia</span></a>
+  <a href="#equacoes"><span class="nav-rail__dot"></span><span class="nav-rail__label">Equações</span></a>
+  <a href="#relacao"><span class="nav-rail__dot"></span><span class="nav-rail__label">Relação</span></a>
+  <a href="#exemplo"><span class="nav-rail__dot"></span><span class="nav-rail__label">Exemplo</span></a>
+  <a href="#aplicacoes"><span class="nav-rail__dot"></span><span class="nav-rail__label">Aplicações</span></a>
+  <a href="#sintese"><span class="nav-rail__dot"></span><span class="nav-rail__label">Síntese</span></a>
+  <a href="#galeria"><span class="nav-rail__dot"></span><span class="nav-rail__label">Galeria</span></a>
+</nav>
+
+<main>
+
+<!-- ════════════════════════════ HERO ════════════════════════════ -->
+<section id="hero" class="section hero">
+  <div class="hero__inner">
+    <div class="hero__text">
+      <p class="eyebrow reveal">Geometria Analítica · Seções Cônicas</p>
+      <h1 class="hero-title reveal">HIPÉR<br>BOLE</h1>
+      <p class="hero__sub reveal">Lugar geométrico dos pontos cuja diferença de distâncias a dois focos permanece constante. Dois ramos, abertura ilimitada e duas assíntotas que a curva aproxima sem jamais tocar.</p>
+      <div class="hero__meta reveal">
+        <div>EXCENTRICIDADE<span>e &gt; 1</span></div>
+        <div>RAMOS<span>2</span></div>
+        <div>ASSÍNTOTAS<span>2</span></div>
+      </div>
+    </div>
+    <div class="hero__graph reveal">
+      <div class="scope scope--sweep scope--300">
+        <span class="scope__corner scope__corner--tl"></span>
+        <span class="scope__corner scope__corner--tr"></span>
+        <span class="scope__corner scope__corner--bl"></span>
+        <span class="scope__corner scope__corner--br"></span>
+        <span class="scope__tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          REGISTRO 01 · x²/9 − y²/4 = 1
+        </span>
+        <div id="plotHero" class="scope__plot h-300"></div>
+      </div>
+    </div>
+  </div>
+  <p class="scroll-cue">rolar para iniciar a leitura</p>
+</section>
+
+<!-- ════════════════════════════ 01 DEFINIÇÃO ════════════════════════════ -->
+<section id="definicao" class="section section--center">
+  <div class="container">
+    <p class="eyebrow reveal">01 — Definição</p>
+    <h2 class="section-title reveal">Diferença constante entre<br>distâncias a dois focos.</h2>
+    <p class="lede reveal">A hipérbole é o conjunto dos pontos do plano para os quais a diferença, em módulo, das distâncias a dois pontos fixos — os <em>focos</em> F₁ e F₂ — permanece constante e igual a 2a, com a &gt; 0.</p>
+    <div class="eq-block reveal"><span id="eq-def"></span></div>
+    <p class="reveal note-faint">2a corresponde à diferença constante; o parâmetro a é, por definição, positivo.</p>
+    <p class="reveal gap-md measure">A hipérbole integra o conjunto das quatro <strong>seções cônicas</strong>. Resulta da interseção de um plano com as duas folhas de um cone duplo, o que origina dois <em>ramos</em> distintos e simétricos em relação ao centro.</p>
+
+    <div class="scope reveal gap-lg scope--300">
+      <span class="scope__corner scope__corner--tl"></span><span class="scope__corner scope__corner--tr"></span>
+      <span class="scope__corner scope__corner--bl"></span><span class="scope__corner scope__corner--br"></span>
+      <span class="scope__hint">arraste para mover · role para ampliar</span>
+      <div id="plotDefinicao" class="h-300"></div>
+      <div class="coord-pill"></div>
+      <p class="scope__caption">Os dois ramos divergem indefinidamente, aproximando-se das assíntotas sem nunca as intersectar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ 02 GEOMETRIA ════════════════════════════ -->
+<section id="geometria" class="section section--center">
+  <div class="container">
+    <p class="eyebrow reveal">02 — Conceito Geométrico</p>
+    <h2 class="section-title reveal">A diferença determina<br>a curva — não a soma.</h2>
+    <p class="lede reveal">Fixados dois pontos F₁ e F₂ no plano, a hipérbole reúne todo ponto P que satisfaz a condição:</p>
+    <div class="eq-block eq-block--lg eq-block--center reveal"><span id="eq-geo"></span></div>
+
+    <div class="scope reveal scope--340">
+      <span class="scope__corner scope__corner--tl"></span><span class="scope__corner scope__corner--tr"></span>
+      <span class="scope__corner scope__corner--bl"></span><span class="scope__corner scope__corner--br"></span>
+      <span class="scope__hint">posicione o cursor sobre a curva</span>
+      <div id="plotGeometria" class="h-340"></div>
+      <div class="readout" id="readout">
+        <div class="readout__row"><span>d(P, F₁)</span><span class="readout__val" id="vd1">—</span></div>
+        <div class="readout__row"><span>d(P, F₂)</span><span class="readout__val" id="vd2">—</span></div>
+        <div class="readout__row readout__row--hi"><span>|d₁ − d₂|</span><span class="readout__val" id="vdiff">—</span></div>
+      </div>
+      <div class="coord-pill"></div>
+      <p class="scope__caption">O valor de |d₁ − d₂| permanece igual a 2a = 6 para qualquer posição de P sobre a curva.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ 03 ANATOMIA ════════════════════════════ -->
+<section id="anatomia" class="section section--center">
+  <div class="container">
+    <p class="eyebrow reveal">03 — Anatomia</p>
+    <h2 class="section-title reveal">Elementos que compõem<br>a curva.</h2>
+    <p class="lede reveal">A representação a seguir reúne os elementos da hipérbole, cada um determinado pelos parâmetros a, b e c.</p>
+
+    <div class="scope reveal gap-lg scope--360">
+      <span class="scope__corner scope__corner--tl"></span><span class="scope__corner scope__corner--tr"></span>
+      <span class="scope__corner scope__corner--bl"></span><span class="scope__corner scope__corner--br"></span>
+      <span class="scope__hint">arraste para mover · role para ampliar</span>
+      <div id="plotAnatomia" class="h-360"></div>
+      <div class="coord-pill"></div>
+      <p class="scope__caption">x²/16 − y²/9 = 1, com todos os elementos demarcados.</p>
+    </div>
+
+    <div class="glossary reveal">
+      <div class="glossary__item">
+        <span class="glossary__tag tag-ink">O</span>
+        <h3>Centro</h3>
+        <p>Ponto médio do segmento F₁F₂; centro de simetria de toda a curva.</p>
+      </div>
+      <div class="glossary__item">
+        <span class="glossary__tag tag-cool">F</span>
+        <h3>Focos (F₁, F₂)</h3>
+        <p>Pontos fixos que originam a curva, situados a uma distância c do centro, sendo c sempre maior que a.</p>
+      </div>
+      <div class="glossary__item">
+        <span class="glossary__tag tag-gold">A</span>
+        <h3>Vértices (A₁, A₂)</h3>
+        <p>Pontos da curva mais próximos do centro, situados a uma distância a sobre o eixo real.</p>
+      </div>
+      <div class="glossary__item">
+        <span class="glossary__tag tag-signal">2a</span>
+        <h3>Eixo real</h3>
+        <p>Segmento que une A₁ a A₂, passando pelo centro, com comprimento exatamente igual a 2a.</p>
+      </div>
+      <div class="glossary__item">
+        <span class="glossary__tag tag-violet">2b</span>
+        <h3>Eixo imaginário</h3>
+        <p>Segmento perpendicular ao eixo real, de comprimento 2b, sem interseção com a curva.</p>
+      </div>
+      <div class="glossary__item">
+        <span class="glossary__tag tag-violet">∞</span>
+        <h3>Assíntotas</h3>
+        <p>Retas y = ±(b/a)x às quais os ramos da curva se aproximam indefinidamente, sem nunca as intersectar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ 04 EQUAÇÕES ════════════════════════════ -->
+<section id="equacoes" class="section section--center">
+  <div class="container">
+    <p class="eyebrow reveal">04 — Equações</p>
+    <h2 class="section-title reveal">Duas orientações,<br>uma única estrutura.</h2>
+    <p class="lede reveal">A posição dos focos determina a orientação da hipérbole. Na equação horizontal, o termo positivo corresponde a x; na vertical, a y. Os controles abaixo alteram a e b e atualizam a curva em tempo real.</p>
+
+    <div class="toggle-group reveal" role="tablist">
+      <button class="toggle-btn is-active" data-orient="h">Horizontal</button>
+      <button class="toggle-btn" data-orient="v">Vertical</button>
+    </div>
+
+    <div class="eq-block eq-block--lg eq-block--center reveal"><span id="eqOrient"></span></div>
+    <p id="eqSub" class="reveal eq-sub-text">Focos sobre o eixo <strong>x</strong> — ramos abertos lateralmente.</p>
+
+    <div class="scope reveal scope--360">
+      <span class="scope__corner scope__corner--tl"></span><span class="scope__corner scope__corner--tr"></span>
+      <span class="scope__corner scope__corner--bl"></span><span class="scope__corner scope__corner--br"></span>
+      <span class="scope__hint">arraste para mover · role para ampliar</span>
+      <div id="plotEquacoes" class="h-330"></div>
+      <div class="coord-pill"></div>
+      <div class="slider-panel">
+        <div class="slider-row"><label>a = <span class="val" id="va">3</span></label><input type="range" id="sA" min="1" max="6" step="0.5" value="3"></div>
+        <div class="slider-row"><label>b = <span class="val" id="vb">2</span></label><input type="range" id="sB" min="1" max="6" step="0.5" value="2"></div>
+      </div>
+      <p class="scope__caption" id="capEq">Assíntotas: y = ±(b/a)x = ±0.67 · c = √(a²+b²) = 3.61</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ 05 RELAÇÃO FUNDAMENTAL ════════════════════════════ -->
+<section id="relacao" class="section section--center">
+  <div class="container">
+    <p class="eyebrow reveal">05 — Relação Fundamental</p>
+    <h2 class="section-title reveal">Um triângulo retângulo<br>implícito na curva.</h2>
+    <p class="lede reveal">Os parâmetros a, b e c relacionam-se por um teorema de Pitágoras: c atua como hipotenusa de um triângulo retângulo cujos catetos medem a e b.</p>
+    <div class="eq-block eq-block--lg eq-block--center reveal"><span id="eq-rel"></span></div>
+
+    <div class="scope reveal scope--300">
+      <span class="scope__corner scope__corner--tl"></span><span class="scope__corner scope__corner--tr"></span>
+      <span class="scope__corner scope__corner--bl"></span><span class="scope__corner scope__corner--br"></span>
+      <span class="scope__hint">role para ampliar</span>
+      <div id="plotRelacao" class="h-300"></div>
+      <div class="coord-pill"></div>
+      <p class="scope__caption">Triângulo retângulo de catetos a e b; a hipotenusa c corresponde à distância focal.</p>
+    </div>
+
+    <div class="compare reveal">
+      <div class="compare__card">
+        <p class="compare__label">Elipse</p>
+        <span id="eq-elipse"></span>
+        <p class="note-sm">c &lt; a — o foco situa-se no interior da curva.</p>
+      </div>
+      <div class="compare__vs">vs</div>
+      <div class="compare__card compare__card--hi">
+        <p class="compare__label">Hipérbole</p>
+        <span id="eq-hip-rel"></span>
+        <p class="note-sm">c &gt; a — o foco situa-se fora da curva.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ 06 EXEMPLO RESOLVIDO ════════════════════════════ -->
+<section id="exemplo" class="section section--center">
+  <div class="container">
+    <p class="eyebrow reveal">06 — Exemplo Resolvido</p>
+    <h2 class="section-title reveal">Da equação aos<br>elementos da curva.</h2>
+    <p class="lede reveal">A equação x²/16 − y²/9 = 1 permite obter, por leitura direta dos denominadores, os principais elementos da hipérbole.</p>
+
+    <div class="eq-block eq-block--lg eq-block--center reveal"><span id="eq-ex"></span></div>
+
+    <div class="steps reveal">
+      <div class="step"><span class="step__num">a²</span><div><span id="eq-ex1"></span></div></div>
+      <div class="step"><span class="step__num">b²</span><div><span id="eq-ex2"></span></div></div>
+      <div class="step"><span class="step__num">c²</span><div><span id="eq-ex3"></span></div></div>
+      <div class="step"><span class="step__num">assínt.</span><div><span id="eq-ex4"></span></div></div>
+      <div class="step step--result"><span class="step__num">∴</span><div class="text-ink">Vértices em <strong>(±4, 0)</strong> · Focos em <strong>(±5, 0)</strong> · Assíntotas <strong>y = ±¾x</strong></div></div>
+    </div>
+
+    <div class="scope reveal scope--380">
+      <span class="scope__corner scope__corner--tl"></span><span class="scope__corner scope__corner--tr"></span>
+      <span class="scope__corner scope__corner--bl"></span><span class="scope__corner scope__corner--br"></span>
+      <span class="scope__hint">arraste para mover · role para ampliar</span>
+      <div id="plotExemplo" class="h-380"></div>
+      <div class="coord-pill"></div>
+      <p class="scope__caption">x²/16 − y²/9 = 1 · a = 4, b = 3, c = 5 · assíntotas y = ±¾x</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ 08 APLICAÇÕES ════════════════════════════ -->
+<section id="aplicacoes" class="section section--center">
+  <div class="container">
+    <p class="eyebrow reveal">07 — Aplicações</p>
+    <h2 class="section-title reveal">Ocorrências em<br>contextos aplicados.</h2>
+    <p class="lede reveal">A hipérbole aparece em domínios distintos da matemática aplicada — da mecânica orbital à instrumentação óptica e à engenharia estrutural.</p>
+
+    <div class="apps-grid reveal">
+      <div class="app-card" data-detail="astronomia" role="button" tabindex="0" aria-label="Ver detalhes: Astronomia">
+        <svg class="app-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="24" cy="24" r="9"/>
+          <path d="M24 4c-7 7-11 13-11 20" stroke-dasharray="3,3"/>
+          <path d="M37 8c-5 5-8 10-8 16" stroke-dasharray="3,3"/>
+          <path d="M24 24 L42 9"/><circle cx="42" cy="9" r="2.4" fill="currentColor" stroke="none"/>
+        </svg>
+        <h3>Astronomia</h3>
+        <p>Corpos com trajetória hiperbólica em relação ao Sol não retornam ao Sistema Solar — caso do objeto interestelar ʻOumuamua.</p>
+      </div>
+      <div class="app-card" data-detail="loran" role="button" tabindex="0" aria-label="Ver detalhes: Navegação">
+        <svg class="app-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="13" cy="13" r="2.4" fill="currentColor" stroke="none"/>
+          <circle cx="35" cy="13" r="2.4" fill="currentColor" stroke="none"/>
+          <path d="M6 41 Q14 21 24 38 Q34 21 42 41"/>
+        </svg>
+        <h3>Navegação</h3>
+        <p>Sistemas por diferença de tempo de chegada de sinais determinam a posição do receptor na interseção de duas hipérboles.</p>
+      </div>
+      <div class="app-card" data-detail="torres" role="button" tabindex="0" aria-label="Ver detalhes: Engenharia estrutural">
+        <svg class="app-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M10 42c0-20 4-34 14-34s14 14 14 34"/>
+          <ellipse cx="24" cy="42" rx="14" ry="3"/>
+          <ellipse cx="24" cy="8" rx="6.5" ry="1.8"/>
+        </svg>
+        <h3>Engenharia estrutural</h3>
+        <p>Torres de resfriamento adotam perfil hiperboloide, o que aumenta a resistência estrutural com menor consumo de material.</p>
+      </div>
+      <div class="app-card" data-detail="cassegrain" role="button" tabindex="0" aria-label="Ver detalhes: Antenas e telescópios Cassegrain">
+        <svg class="app-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 34 Q24 44 42 34"/>
+          <path d="M18 22 Q24 26 30 22"/>
+          <path d="M10 32 L18 23 M38 32 L30 23 M24 24 L24 12"/>
+          <circle cx="24" cy="10" r="2" fill="currentColor" stroke="none"/>
+        </svg>
+        <h3>Telescópios Cassegrain</h3>
+        <p>O espelho secundário hiperbólico redireciona a luz refletida pelo espelho primário até o plano focal.</p>
+      </div>
+      <div class="app-card" data-detail="rutherford" role="button" tabindex="0" aria-label="Ver detalhes: Física — espalhamento">
+        <svg class="app-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="24" cy="24" r="2.6" fill="currentColor" stroke="none"/>
+          <path d="M4 12c8 4 14 9 18 12" stroke-dasharray="3,3"/>
+          <path d="M22 24c5 3 12 2 22-10"/>
+        </svg>
+        <h3>Física — espalhamento</h3>
+        <p>No espalhamento de partículas alfa de Rutherford, a repulsão coulombiana gera trajetórias hiperbólicas em torno do núcleo.</p>
+      </div>
+      <div class="app-card" data-detail="relogio" role="button" tabindex="0" aria-label="Ver detalhes: Relógio de sol">
+        <svg class="app-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="6" y1="40" x2="42" y2="40"/>
+          <line x1="24" y1="40" x2="24" y2="10"/>
+          <path d="M8 39 Q24 16 40 39" stroke-dasharray="3,3" opacity=".6"/>
+        </svg>
+        <h3>Relógio de sol</h3>
+        <p>A extremidade da sombra de um gnômon descreve, ao longo do dia, uma hipérbole cuja abertura varia com a estação do ano.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ 09 SÍNTESE ════════════════════════════ -->
+<section id="sintese" class="section section--center">
+  <div class="container">
+    <p class="eyebrow reveal">08 — Síntese</p>
+    <h2 class="section-title reveal">Elementos centrais<br>do conteúdo.</h2>
+    <p class="lede reveal">Reúnem-se a seguir as definições e relações tratadas nas seções anteriores.</p>
+
+    <div class="summary-grid reveal">
+      <div class="summary-card summary-card--wide summary-card--accent">
+        <p class="summary-card__label">Definição</p>
+        <p>Conjunto dos pontos cuja <strong>diferença</strong> das distâncias a dois focos é constante e igual a 2a.</p>
+        <div class="mt-tight"><span id="eq-sum-def"></span></div>
+      </div>
+      <div class="summary-card">
+        <p class="summary-card__label">Hipérbole horizontal</p>
+        <span id="eq-sum-h"></span>
+        <p class="note-sm">Focos no eixo x · ramos abertos lateralmente.</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-card__label">Hipérbole vertical</p>
+        <span id="eq-sum-v"></span>
+        <p class="note-sm">Focos no eixo y · ramos abertos verticalmente.</p>
+      </div>
+      <div class="summary-card">
+        <p class="summary-card__label">Relação fundamental</p>
+        <span id="eq-sum-rel"></span>
+        <p class="note-sm">c é a hipotenusa do triângulo de catetos a e b.</p>
+      </div>
+      <div class="summary-card summary-card--wide">
+        <p class="summary-card__label">Elementos principais</p>
+        <p>Centro <strong>(O)</strong> · Focos <strong>(F₁, F₂)</strong> a uma distância c · Vértices <strong>(A₁, A₂)</strong> a uma distância a · Eixo real <strong>2a</strong> · Eixo imaginário <strong>2b</strong> · Assíntotas <strong>y = ±(b/a)x</strong>.</p>
+      </div>
+    </div>
+
+    <div class="scope reveal gap-lg scope--340">
+      <span class="scope__corner scope__corner--tl"></span><span class="scope__corner scope__corner--tr"></span>
+      <span class="scope__corner scope__corner--bl"></span><span class="scope__corner scope__corner--br"></span>
+      <span class="scope__hint">arraste para mover · role para ampliar</span>
+      <div id="plotAnatomia2" class="h-340"></div>
+      <div class="coord-pill"></div>
+      <p class="scope__caption">Hipérbole completa com todos os elementos demarcados — x²/9 − y²/4 = 1.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ 09 GALERIA ════════════════════════════ -->
+<section id="galeria" class="section section--center">
+  <div class="container">
+    <p class="eyebrow reveal">09 — Galeria de Exemplos</p>
+    <h2 class="section-title reveal">Agora é a sua vez:<br>mexa na curva e observe.</h2>
+    <p class="lede reveal">Esta galeria reúne vinte e dois exemplos para praticar o que foi apresentado até aqui. Em cada cartão, arraste os controles de <strong>a</strong> e <strong>b</strong> — e, quando o centro estiver deslocado, também de <strong>h</strong> e <strong>k</strong> — para ver a curva, a equação e a leitura dos elementos mudarem juntos, em tempo real. Errou o valor? O botão <em>restaurar</em> devolve o exemplo ao ponto de partida.</p>
+
+    <div class="legend reveal" role="img" aria-label="Legenda de cores usada nos gráficos: curva em verde-água, assíntotas em violeta tracejado, focos em laranja, vértices em amarelo, centro em branco">
+      <span class="legend__item"><span class="legend__swatch legend__swatch--curve"></span>curva</span>
+      <span class="legend__item"><span class="legend__swatch legend__swatch--asymp"></span>assíntotas</span>
+      <span class="legend__item"><span class="legend__swatch legend__swatch--focus"></span>focos</span>
+      <span class="legend__item"><span class="legend__swatch legend__swatch--vertex"></span>vértices</span>
+      <span class="legend__item"><span class="legend__swatch legend__swatch--center"></span>centro</span>
+    </div>
+
+    <div class="gallery-controls reveal" role="group" aria-label="Filtrar exemplos por categoria">
+      <button class="filter-btn is-active" data-filter="all" aria-pressed="true">Todos</button>
+      <button class="filter-btn" data-filter="horizontal" aria-pressed="false">Horizontais</button>
+      <button class="filter-btn" data-filter="vertical" aria-pressed="false">Verticais</button>
+      <button class="filter-btn" data-filter="transladada" aria-pressed="false">Transladadas</button>
+      <button class="filter-btn" data-filter="equilatera" aria-pressed="false">Equiláteras</button>
+      <button class="filter-btn" data-filter="excentrica" aria-pressed="false">Alta excentricidade</button>
+    </div>
+
+    <div class="gallery" id="galleryGrid"></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p class="eyebrow">Geometria Analítica · Material de Referência</p>
+  <p class="footer__title">Fim do documento.</p>
+  <p class="footer__sub">Hipérbole — Seções Cônicas</p>
+</footer>
+
+<!-- ════════════════════════════ PAINÉIS DE DETALHE ════════════════════════════ -->
+
+<!-- ASTRONOMIA -->
+<div class="detail" id="detail-astronomia" role="dialog" aria-modal="true" aria-label="Astronomia">
+  <div class="detail__inner">
+    <button class="detail__back" data-close="astronomia">← voltar para aplicações</button>
+    <p class="detail__eyebrow">07 — Aplicações · Astronomia</p>
+    <h2 class="detail__title">Trajetórias que não se repetem.</h2>
+    <p class="detail__lede">Em 2017, o objeto interestelar ʻOumuamua atravessou o Sistema Solar em velocidade suficiente para que a gravidade do Sol não o capturasse em órbita fechada. A trajetória observada foi hiperbólica: o objeto se aproximou, foi defletido pelo Sol e seguiu para fora do Sistema Solar sem retorno.</p>
+
+    <div class="detail__media detail__media--2">
+      <figure class="detail__photo">
+        <img src="img/astronomia-1-crop.jpg" alt="Representação artística do ʻOumuamua atravessando o espaço interestelar">
+        <figcaption>Concepção artística do ʻOumuamua</figcaption>
+      </figure>
+      <figure class="detail__photo">
+        <img src="img/astronomia-2-crop.jpg" alt="Trajetória hiperbólica do ʻOumuamua em relação ao Sol e às órbitas planetárias">
+        <figcaption>Trajetória no plano do Sistema Solar</figcaption>
+      </figure>
+    </div>
+
+    <div class="detail__grid">
+      <div class="detail__cell"><h4>A hipérbole no fenômeno</h4><p>O Sol ocupa um dos focos da trajetória. O corpo percorre apenas um ramo: aproxima-se, é defletido e segue para o ramo oposto, no infinito.</p></div>
+      <div class="detail__cell"><h4>Elipse e hipérbole orbitais</h4><p>Corpos ligados gravitacionalmente ao Sol descrevem elipses. Velocidade superior à de escape produz, em vez disso, uma trajetória hiperbólica.</p></div>
+      <div class="detail__cell"><h4>Excentricidade observada</h4><p>Elipses têm e &lt; 1; hipérboles, e &gt; 1. Para o ʻOumuamua, estimou-se e ≈ 1,20 — valor incompatível com origem no próprio Sistema Solar.</p></div>
+      <div class="detail__cell"><h4>Identificação da trajetória</h4><p>O ajuste da órbita observada a nenhuma cônica fechada conhecida indicou, por eliminação, uma trajetória hiperbólica de origem interestelar.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAVEGAÇÃO -->
+<div class="detail" id="detail-loran" role="dialog" aria-modal="true" aria-label="Navegação">
+  <div class="detail__inner">
+    <button class="detail__back" data-close="loran">← voltar para aplicações</button>
+    <p class="detail__eyebrow">07 — Aplicações · Navegação</p>
+    <h2 class="detail__title">Posição determinada por diferença de tempo.</h2>
+    <p class="detail__lede">Em sistemas de navegação como o LORAN, duas estações transmissoras emitem sinais sincronizados. A diferença entre os instantes de chegada dos dois sinais a um receptor define uma hipérbole; a interseção de duas hipérboles, geradas por pares distintos de estações, determina a posição.</p>
+
+    <div class="detail__media detail__media--1">
+      <figure class="detail__photo">
+        <img src="img/loran-1-crop.jpg" alt="Mapa do sistema DECCA mostrando as famílias de hipérboles de posição entre estações master e escravas">
+        <figcaption>Famílias de hipérboles de posição do sistema DECCA</figcaption>
+      </figure>
+    </div>
+
+    <div class="detail__grid">
+      <div class="detail__cell"><h4>Os focos do sistema</h4><p>Cada par de estações transmissoras corresponde aos dois focos de uma família de hipérboles traçada sobre o mapa.</p></div>
+      <div class="detail__cell"><h4>A hipérbole de posição</h4><p>Todo ponto com a mesma diferença de tempo de chegada entre as duas estações pertence à mesma curva — uma hipérbole de posição.</p></div>
+      <div class="detail__cell"><h4>Localização por interseção</h4><p>Uma segunda hipérbole, obtida de outro par de estações, intersecta a primeira em um único ponto: a posição do receptor.</p></div>
+      <div class="detail__cell"><h4>Continuidade do princípio</h4><p>Sistemas por satélite, como o GPS, aplicam o mesmo princípio geométrico de diferença de tempo, com estações em órbita.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ENGENHARIA ESTRUTURAL -->
+<div class="detail" id="detail-torres" role="dialog" aria-modal="true" aria-label="Engenharia estrutural">
+  <div class="detail__inner">
+    <button class="detail__back" data-close="torres">← voltar para aplicações</button>
+    <p class="detail__eyebrow">07 — Aplicações · Engenharia</p>
+    <h2 class="detail__title">A curvatura que distribui a carga.</h2>
+    <p class="detail__lede">Torres de resfriamento de usinas de geração de energia adotam perfil estreitado ao centro por razões estruturais, não estéticas. A superfície resulta da rotação de uma hipérbole em torno de um eixo vertical — um <strong>hiperboloide de revolução</strong> — , o que distribui as tensões de forma mais eficiente e reduz o volume de material necessário.</p>
+
+    <div class="detail__media detail__media--2">
+      <figure class="detail__photo">
+        <img src="img/torres-1-crop.jpg" alt="Torres de resfriamento de usina de energia em operação, com perfil hiperboloide visível">
+        <figcaption>Perfil hiperboloide — vista frontal</figcaption>
+      </figure>
+      <figure class="detail__photo">
+        <img src="img/torres-2-crop.jpg" alt="Vista aérea de torre de resfriamento mostrando o estreitamento central da estrutura">
+        <figcaption>Estreitamento central — vista elevada</figcaption>
+      </figure>
+    </div>
+
+    <div class="detail__grid">
+      <div class="detail__cell"><h4>A hipérbole no perfil</h4><p>O contorno da torre, em corte vertical, segue um ramo de hipérbole; a rotação completa em torno do eixo gera a superfície tridimensional.</p></div>
+      <div class="detail__cell"><h4>Vantagem estrutural</h4><p>A curvatura dupla do hiperboloide confere rigidez à casca fina de concreto, permitindo grandes alturas com menor espessura de parede.</p></div>
+      <div class="detail__cell"><h4>Função térmica</h4><p>O estreitamento central acelera o fluxo de ar ascendente, favorecendo a troca de calor com a água pulverizada no interior da torre.</p></div>
+      <div class="detail__cell"><h4>Outras aplicações da forma</h4><p>O mesmo princípio de hiperboloide de revolução aparece em coberturas de pavilhões e em determinadas estruturas de torres de observação.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- CASSEGRAIN -->
+<div class="detail" id="detail-cassegrain" role="dialog" aria-modal="true" aria-label="Telescópios Cassegrain">
+  <div class="detail__inner">
+    <button class="detail__back" data-close="cassegrain">← voltar para aplicações</button>
+    <p class="detail__eyebrow">07 — Aplicações · Instrumentação óptica</p>
+    <h2 class="detail__title">Dois espelhos, dois focos compartilhados.</h2>
+    <p class="detail__lede">Telescópios e antenas de configuração Cassegrain combinam um espelho primário parabólico com um espelho secundário hiperbólico. O foco da parábola coincide com um dos focos da hipérbole, o que permite redirecionar a luz refletida até um plano focal acessível, atrás do espelho primário.</p>
+
+    <div class="detail__media detail__media--2">
+      <figure class="detail__photo">
+        <img src="img/cassegrain-1-crop.jpg" alt="Diagrama comparando situação favorável e desfavorável de interferência em antena parabólica Cassegrain">
+        <figcaption>Geometria de reflexão — situações favorável e desfavorável</figcaption>
+      </figure>
+      <figure class="detail__photo">
+        <img src="img/cassegrain-2-crop.jpg" alt="Diagrama de raios paralelos refletidos por um espelho hiperbólico até um ponto focal único">
+        <figcaption>Convergência dos raios refletidos ao foco</figcaption>
+      </figure>
+    </div>
+
+    <div class="detail__grid">
+      <div class="detail__cell"><h4>A hipérbole no instrumento</h4><p>O espelho secundário corresponde a um ramo de hipérbole; um de seus focos coincide com o foco da parábola primária.</p></div>
+      <div class="detail__cell"><h4>Função do segundo foco</h4><p>O segundo foco da hipérbole define o plano focal final, posicionado de modo acessível para o observador ou para o receptor.</p></div>
+      <div class="detail__cell"><h4>Vantagem da configuração</h4><p>O caminho óptico é dobrado, o que permite tubos mais curtos para uma mesma distância focal efetiva.</p></div>
+      <div class="detail__cell"><h4>Uso em radioastronomia</h4><p>A mesma configuração de dois espelhos é empregada em antenas parabólicas de grande porte para concentrar sinais de rádio.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- RUTHERFORD -->
+<div class="detail" id="detail-rutherford" role="dialog" aria-modal="true" aria-label="Física — espalhamento">
+  <div class="detail__inner">
+    <button class="detail__back" data-close="rutherford">← voltar para aplicações</button>
+    <p class="detail__eyebrow">07 — Aplicações · Física</p>
+    <h2 class="detail__title">Repulsão coulombiana e trajetória hiperbólica.</h2>
+    <p class="detail__lede">No experimento de espalhamento de partículas alfa conduzido por Rutherford, partículas positivamente carregadas são repelidas pelo núcleo atômico, também positivo. A força de repulsão, decrescente com o quadrado da distância, produz trajetórias hiperbólicas com o núcleo em um dos focos.</p>
+
+    <div class="detail__media detail__media--1">
+      <figure class="detail__photo">
+        <img src="img/rutherford-1-crop.jpg" alt="Diagrama do experimento de espalhamento de Rutherford, mostrando o feixe de partículas alfa, a folha de ouro e as trajetórias defletidas pelos núcleos atômicos">
+        <figcaption>Aparato e modelo de espalhamento pelos núcleos da folha de ouro</figcaption>
+      </figure>
+    </div>
+
+    <div class="detail__grid">
+      <div class="detail__cell"><h4>A hipérbole no espalhamento</h4><p>Cada trajetória individual é um ramo de hipérbole; o núcleo atômico ocupa o foco correspondente à força repulsiva.</p></div>
+      <div class="detail__cell"><h4>Ângulo de deflexão</h4><p>Partículas com parâmetro de impacto menor aproximam-se mais do núcleo e sofrem maior deflexão angular.</p></div>
+      <div class="detail__cell"><h4>Evidência da estrutura nuclear</h4><p>A distribuição angular das partículas espalhadas indicou massa concentrada em região muito menor que o átomo — o núcleo.</p></div>
+      <div class="detail__cell"><h4>Relação com a astronomia</h4><p>A mesma equação de trajetória hiperbólica, sob força que decresce com o quadrado da distância, aplica-se a corpos celestes não capturados.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- RELÓGIO DE SOL -->
+<div class="detail" id="detail-relogio" role="dialog" aria-modal="true" aria-label="Relógio de sol">
+  <div class="detail__inner">
+    <button class="detail__back" data-close="relogio">← voltar para aplicações</button>
+    <p class="detail__eyebrow">07 — Aplicações · Gnomônica</p>
+    <h2 class="detail__title">A sombra que desenha uma curva diária.</h2>
+    <p class="detail__lede">Em um relógio de sol horizontal, a extremidade da sombra projetada pelo gnômon — a haste vertical — percorre, ao longo de um único dia, uma curva cônica sobre o plano do mostrador. Na maior parte do ano, essa curva é uma hipérbole; sua abertura varia com a estação, tornando-se uma reta nos equinócios.</p>
+
+    <div class="detail__media detail__media--2">
+      <figure class="detail__photo">
+        <img src="img/relogio-1-crop.jpg" alt="Gnômon com raios solares incidindo de nove posições ao longo do dia">
+        <figcaption>Posições do Sol ao longo do dia</figcaption>
+      </figure>
+      <figure class="detail__photo">
+        <img src="img/relogio-2-crop.jpg" alt="Comparação entre a curva da sombra no verão e no inverno sobre o mostrador">
+        <figcaption>Variação sazonal da curva da sombra</figcaption>
+      </figure>
+    </div>
+
+    <div class="detail__grid">
+      <div class="detail__cell"><h4>A hipérbole no fenômeno</h4><p>A extremidade da sombra é a interseção entre o cone de raios solares ao longo do dia e o plano horizontal do mostrador.</p></div>
+      <div class="detail__cell"><h4>Variação sazonal</h4><p>Próximo aos solstícios, a abertura da hipérbole é mais acentuada; nos equinócios, a trajetória degenera em uma linha reta.</p></div>
+      <div class="detail__cell"><h4>Uso histórico</h4><p>A construção de mostradores solares horizontais depende do traçado dessas curvas para marcar as horas ao longo do ano.</p></div>
+      <div class="detail__cell"><h4>Generalização geométrica</h4><p>O fenômeno ilustra como a interseção de um cone com um plano produz, conforme a inclinação relativa, diferentes seções cônicas.</p></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/examples-data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/gallery.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
